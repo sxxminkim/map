@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <title>NaverMapApi</title>
+        <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=at92av9h15"></script>
+    </head>
+    <body>
+        <div id="map" style="width:400px;height:400px"></div>
+        <script>
+            
+            var mapOptions = {
+                center: new naver.maps.LatLng(37.5662952, 126.9779451),
+                zoom: 10
+            };
+            
+            var map = new naver.maps.Map('map', mapOptions);
+            
+            //navermap-layer
+            var trafficLayer = new naver.maps.TrafficLayer({
+                interval: 300000 // 5분마다 새로고침 (최소값 5분)
+            });
+            naver.maps.Event.once(map, 'init', function() {
+                trafficLayer.setMap(map);
+            });
+            
+        </script>
+    </body>
+</html>
